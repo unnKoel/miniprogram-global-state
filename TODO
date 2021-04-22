@@ -1,4 +1,5 @@
 * make a example to prove that this library works.
+* realize the derive mechanism.
 * how to invoke `setData` in batches after the invoking of each funtion.
 * how to organize state and relevant update functions more cohesive.
 * how to presist the state to localstorage or webstorage.

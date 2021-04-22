@@ -1,0 +1,7 @@
+<!-- pages/detail/detail.wxml -->
+<view class="detail">
+  <view class="name">{{product.name}}</view>
+  <view class="price">{{product.price}}</view>
+  <view class="remaining">{{product.num}}</view>
+  <button class="btn" type="primary" disabled="{{product.num === 0}}" bindtap="onBuy">Buy</button>
+</view>

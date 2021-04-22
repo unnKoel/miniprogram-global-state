@@ -1,0 +1,18 @@
+<!-- pages/products/products.wxml -->
+<view class="products">
+  <view class="welcome">Welcome to micro store !!!</view>
+  <view class="start">Please pick products you prefer.</view>
+  <view class="list" wx:for="{{products}}">
+    <view class="item" bindtap="onTapProduct" data-index="{{index}}">
+      <view class="head">
+        <text class="name">{{item.name}}</text>
+      </view>
+      <view class="mediate">
+        <text class="price">price: {{item.price}}</text>
+        <text class="number">remaining: {{item.num}}</text>
+      </view>
+      <view class="desc">{{item.desc}}</view>
+      <button class="btn" type="primary" catchtap="onBuy">buy</button>
+    </view>
+  </view>
+</view>

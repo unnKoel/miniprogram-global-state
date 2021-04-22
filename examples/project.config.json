@@ -70,9 +70,24 @@
       "current": -1,
       "list": [
         {
+          "id": 0,
+          "name": "pages/shopping-cart/shopping-cart",
+          "pathName": "pages/shopping-cart/shopping-cart",
+          "query": "",
+          "scene": null
+        },
+        {
           "id": -1,
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
+          "name": "pages/products/products",
+          "pathName": "pages/products/products",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/detail/detail",
+          "pathName": "pages/detail/detail",
+          "query": "",
           "scene": null
         }
       ]

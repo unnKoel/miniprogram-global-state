@@ -7,8 +7,8 @@ const createStore = (initialState = {}) => {
       throw new Error('`mapState` parameter must be a function');
     }
 
-    const sliceState = mapState ? state : mapState(state);
-    const { data } = Component;
+    const sliceState = !mapState ? state : mapState(state);
+    const { data = {} } = Component;
 
     // combine state of store and data of page or component.
     // it makes state of store is reactable.
@@ -54,6 +54,11 @@ const createStore = (initialState = {}) => {
     // eslint-disable-next-line func-names
     Component.onLoad = function (...params) {
       subscribe(this);
+
+      // eslint-disable-next-line no-shadow
+      const sliceState = mapState(state);
+      this.setData(sliceState);
+
       if (typeof onLoad === 'function') {
         onLoad.apply(this, params);
       }
