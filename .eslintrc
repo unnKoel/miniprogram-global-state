@@ -1,0 +1,20 @@
+{
+  "extends": "airbnb-base",
+
+  "rules": {
+    "no-param-reassign": [0]
+  },
+
+  "globals": {
+    "DEV": true,
+    "WECHAT": true,
+    "ALIPAY": true,
+    "App": true,
+    "Page": true,
+    "Component": true,
+    "Behavior": true,
+    "wx": true,
+    "getApp": true,
+    "getCurrentPages": true
+  }
+}
