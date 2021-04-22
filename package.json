@@ -1,0 +1,7 @@
+{
+  "name": "miniprogram-global-state",
+  "version": "0.0.1",
+  "author": "Common"
+  "main": "index.js",
+  "license": "MIT"
+}
