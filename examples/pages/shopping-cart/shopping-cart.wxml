@@ -1,2 +1,20 @@
-<!--pages/shopping-cart/shopping-cart.wxml-->
-<text>pages/shopping-cart/shopping-cart.wxml</text>
+<!-- pages/shopping-cart/shopping-cart.wxml -->
+<view class="shopping-cart">
+  <block calss="userinfo-opendata">
+    <view class="userinfo-avatar" bindtap="bindViewTap">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <open-data class="nick-name" type="userNickName"></open-data>
+  </block>
+  <view class="list" wx:for="{{shoppingCart}}">
+    <view class="item" data-index="{{index}}">
+      <view class="head">
+        <text class="name">{{item.name}}</text>
+      </view>
+      <view class="mediate">
+        <text class="price">price: {{item.price}}</text>
+      </view>
+      <view class="desc">{{item.desc}}</view>
+    </view>
+  </view>
+</view>

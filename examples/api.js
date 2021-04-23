@@ -1,19 +1,19 @@
 const products = [
   {
     name: 'Dyson fan',
-    num: 1,
+    num: 10,
     price: 2000,
     des: 'Change summer to be spring.',
   },
   {
     name: 'MacBook Pro',
-    num: 1,
+    num: 10,
     price: 15000,
     des: 'Own it and make your work more efficent.',
   },
   {
     name: 'iphone 11',
-    num: 1,
+    num: 5,
     price: 8000,
     des: 'The most elegent cellphone.',
   },

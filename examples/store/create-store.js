@@ -8,7 +8,9 @@ const createStore = (initialState = {}) => {
     }
 
     const sliceState = !mapState ? state : mapState(state);
-    const { data = {} } = Component;
+    const { data = {}, derived } = Component;
+
+    const invokeDerived = (instance) => derived && typeof derived === 'function' && derived.bind(instance)();
 
     // combine state of store and data of page or component.
     // it makes state of store is reactable.
@@ -47,6 +49,8 @@ const createStore = (initialState = {}) => {
 
         // eslint-disable-next-line no-unused-expressions
         instance && instance.setData && instance.setData(updateState);
+        // eslint-disable-next-line no-unused-expressions
+        invokeDerived(instance);
       });
     };
 
@@ -62,6 +66,8 @@ const createStore = (initialState = {}) => {
       if (typeof onLoad === 'function') {
         onLoad.apply(this, params);
       }
+
+      invokeDerived(this);
     };
 
     // There is `attached` lifetime function, represent that it's a component.
@@ -77,6 +83,8 @@ const createStore = (initialState = {}) => {
         if (typeof finalAttached === 'function') {
           finalAttached.apply(this, params);
         }
+
+        invokeDerived(this);
       },
     };
 
@@ -85,6 +93,7 @@ const createStore = (initialState = {}) => {
 
   const dispatch = (modifyFunc) => {
     const newState = modifyFunc(state);
+    console.log('newState', newState);
     subscriber.forEach((fn) => fn(newState));
     state = newState;
   };

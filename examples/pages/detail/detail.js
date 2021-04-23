@@ -10,16 +10,20 @@ Page(connect((state) => ({ products: state.products }))({
     index: 0,
   },
 
+  derived() {
+    const { index, products } = this.data;
+    this.setData({
+      product: products[index],
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(e) {
-    console.log(this.data);
     const { index } = e;
-    const product = this.data.products[index];
 
     this.setData({
-      product,
       index,
     });
   },
@@ -28,10 +32,17 @@ Page(connect((state) => ({ products: state.products }))({
     const { index } = this.data;
 
     dispatch((state) => {
-      const { products } = state;
+      const { products, shoppingCart } = state;
       const product = products[index];
       product.num -= 1;
-      return { ...state, products: [...products] };
+      const newShoppingCart = [...shoppingCart, product];
+      return { ...state, products: [...products], shoppingCart: newShoppingCart };
+    });
+  },
+
+  navToCart() {
+    wx.navigateTo({
+      url: '/pages/shopping-cart/shopping-cart',
     });
   },
 }));

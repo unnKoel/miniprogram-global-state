@@ -1,5 +1,8 @@
 <!-- pages/detail/detail.wxml -->
 <view class="detail">
+  <view class="header">
+    <view bindtap="navToCart">my shopping cart >></view>
+  </view>
   <view class="name">{{product.name}}</view>
   <view class="price">{{product.price}}</view>
   <view class="remaining">{{product.num}}</view>

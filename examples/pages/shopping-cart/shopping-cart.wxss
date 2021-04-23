@@ -1,1 +1,30 @@
 /* pages/shopping-cart/shopping-cart.wxss */
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.nick-name {
+  margin-left: 20rpx;
+}
+
+.item {
+  background: pink;
+  padding: 10rpx;
+}
+
+.item .number {
+  margin-left: 30rpx;
+}
+
+.item button {
+  margin: 0;
+}
+
+.list {
+  margin-top: 20rpx;
+  padding: 0 20rpx 0;
+}

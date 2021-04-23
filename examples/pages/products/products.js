@@ -12,14 +12,27 @@ Page(connect((state) => ({ products: state.products }))({
     dispatch((state) => ({ ...state, products }));
   },
 
-  onBuy() {
-    console.log('hello world');
+  onBuy(e) {
+    const { index } = e.currentTarget.dataset;
+    dispatch((state) => {
+      const { products, shoppingCart } = state;
+      const product = products[index];
+      product.num -= 1;
+      const newShoppingCart = [...shoppingCart, product];
+      return { ...state, products: [...products], shoppingCart: newShoppingCart };
+    });
   },
 
   onTapProduct(e) {
     const { dataset: { index } } = e.currentTarget;
     wx.navigateTo({
       url: `/pages/detail/detail?index=${index}`,
+    });
+  },
+
+  navToCart() {
+    wx.navigateTo({
+      url: '/pages/shopping-cart/shopping-cart',
     });
   },
 }));

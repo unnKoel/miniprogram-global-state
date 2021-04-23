@@ -1,5 +1,8 @@
 <!-- pages/products/products.wxml -->
 <view class="products">
+  <view class="header">
+    <view bindtap="navToCart">my shopping cart >></view>
+  </view>
   <view class="welcome">Welcome to micro store !!!</view>
   <view class="start">Please pick products you prefer.</view>
   <view class="list" wx:for="{{products}}">
@@ -12,7 +15,9 @@
         <text class="number">remaining: {{item.num}}</text>
       </view>
       <view class="desc">{{item.desc}}</view>
-      <button class="btn" type="primary" catchtap="onBuy">buy</button>
+      <button class="btn" type="primary" catchtap="onBuy" data-index="{{index}}" disabled="{{item.num===0}}">
+        buy
+      </button>
     </view>
   </view>
 </view>
