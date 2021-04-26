@@ -1,7 +1,7 @@
 const products = [
   {
     name: 'Dyson fan',
-    num: 10,
+    num: 10000,
     price: 2000,
     des: 'Change summer to be spring.',
   },

@@ -7,10 +7,21 @@ const createStore = (initialState = {}) => {
       throw new Error('`mapState` parameter must be a function');
     }
 
-    const sliceState = !mapState ? state : mapState(state);
+    // eslint-disable-next-line no-shadow
+    const getSliceState = (state) => (!mapState ? state : mapState(state));
+
+    const sliceState = getSliceState(state);
     const { data = {}, derived } = Component;
 
-    const invokeDerived = (instance) => derived && typeof derived === 'function' && derived.bind(instance)();
+    const invokeDerived = (instance) => {
+      let derivedData = {};
+      if (derived && typeof derived === 'function') {
+        derivedData = derived.bind(instance)();
+      }
+
+      // eslint-disable-next-line no-unused-expressions
+      Object.keys(derivedData).length && instance.setData(derivedData);
+    };
 
     // combine state of store and data of page or component.
     // it makes state of store is reactable.
@@ -30,8 +41,8 @@ const createStore = (initialState = {}) => {
 
     const subscribe = (instance) => {
       subscriber.push((newState) => {
-        const oldSliceState = mapState(state);
-        const newSliceState = mapState(newState);
+        const oldSliceState = getSliceState(state);
+        const newSliceState = getSliceState(newState);
 
         const changedKeys = Object.keys(newSliceState).filter(
           (key) => newSliceState[key] !== oldSliceState[key],
@@ -60,7 +71,7 @@ const createStore = (initialState = {}) => {
       subscribe(this);
 
       // eslint-disable-next-line no-shadow
-      const sliceState = mapState(state);
+      const sliceState = getSliceState(state);
       this.setData(sliceState);
 
       if (typeof onLoad === 'function') {
@@ -77,7 +88,7 @@ const createStore = (initialState = {}) => {
         subscribe(this);
 
         // eslint-disable-next-line no-shadow
-        const sliceState = mapState(state);
+        const sliceState = getSliceState(state);
         this.setData(sliceState);
 
         if (typeof finalAttached === 'function') {
@@ -93,7 +104,6 @@ const createStore = (initialState = {}) => {
 
   const dispatch = (modifyFunc) => {
     const newState = modifyFunc(state);
-    console.log('newState', newState);
     subscriber.forEach((fn) => fn(newState));
     state = newState;
   };

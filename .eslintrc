@@ -5,6 +5,12 @@
     "no-param-reassign": [0]
   },
 
+  "plugins": ["jest"],
+
+  "env": {
+    "jest/globals": true
+  },
+
   "globals": {
     "DEV": true,
     "WECHAT": true,
