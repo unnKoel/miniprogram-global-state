@@ -108,9 +108,17 @@ const createStore = (initialState = {}) => {
     state = newState;
   };
 
+  const getState = () => state;
+
+  const subscribe = (fn) => {
+    subscriber.push(fn);
+  };
+
   return {
     connect,
     dispatch,
+    getState,
+    subscribe,
   };
 };
 
