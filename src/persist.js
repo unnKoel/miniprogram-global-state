@@ -1,4 +1,5 @@
 import debounce from './utils/debounce';
+import set from './utils/set';
 
 const PERSISTENCE_KEY = '_global_state';
 const PERSISTENCE__MILLISECONDS = 200;
@@ -36,10 +37,18 @@ const persistValues = debounce((values = {}) => {
   localStorage.setItem(PERSISTENCE_KEY, JSON.stringify(values));
 }, PERSISTENCE__MILLISECONDS);
 
-const persist = (createStore) => (paths = []) => (initialState = {}) => {
-  persistValues(getPersistentValues(initialState, paths));
+const initializeState = (initialState) => {
+  // eslint-disable-next-line no-undef
+  const persistantValues = JSON.parse(localStorage.getItem(PERSISTENCE_KEY));
+  Object.keys(persistantValues || {}).forEach((key) => {
+    set(initialState, key, persistantValues[key] || getValueByPath(key, initialState));
+  });
 
-  const { subscribe, ...remaining } = createStore(initialState);
+  return initialState;
+};
+
+const persist = (createStore) => (paths = []) => (initialState = {}) => {
+  const { subscribe, ...remaining } = createStore(initializeState(initialState));
 
   subscribe((state) => {
     persistValues(getPersistentValues(state, paths));
