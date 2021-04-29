@@ -1,14 +1,21 @@
-import createStore from './create-store';
+"use strict";
 
-const initialState = {
-  products: [],
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "persist", {
+  enumerable: true,
+  get: function () {
+    return _persist.default;
+  }
+});
+exports.default = void 0;
 
-  shoppingCart: [],
-};
+var _store = _interopRequireDefault(require("./store"));
 
-const { connect, dispatch } = createStore(initialState);
+var _persist = _interopRequireDefault(require("./persist"));
 
-export {
-  connect,
-  dispatch,
-};
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = _store.default;
+exports.default = _default;

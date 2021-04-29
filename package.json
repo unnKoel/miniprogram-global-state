@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "babel src --out-dir lib && cp lib/index.js examples/store/create-store.js",
+    "build": "babel src --out-dir lib && cp -R lib/ examples/store/",
     "test": "jest"
   },
   "devDependencies": {
@@ -18,5 +18,10 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.3.5",
     "jest": "^26.6.3"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/localstorage.js"
+    ]
   }
 }

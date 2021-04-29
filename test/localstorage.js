@@ -1,10 +1,10 @@
 const localStorageMock = (() => {
   let store = {};
   return {
-    getItem(key) {
+    getStorageSync(key) {
       return store[key];
     },
-    setItem(key, value) {
+    setStorageSync(key, value) {
       store[key] = value.toString();
     },
     clear() {
@@ -17,4 +17,4 @@ const localStorageMock = (() => {
 })();
 
 // eslint-disable-next-line no-undef
-Object.defineProperty(window, 'localStorage', { value: localStorageMock });
+Object.defineProperty(window, 'wx', { value: localStorageMock });

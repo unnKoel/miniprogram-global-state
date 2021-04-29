@@ -21,7 +21,7 @@ describe('persist', () => {
 
     jest.runAllTimers();
 
-    const persistantState = JSON.parse(localStorage.getItem('_global_state'));
+    const persistantState = JSON.parse(wx.getStorageSync('_global_state'));
     expect(persistantState).toEqual({ works: [{ type: 'page0' }] });
   });
 

@@ -1,5 +1,5 @@
 // pages/products/products.js
-import { connect, dispatch } from '../../store/index';
+import { connect, dispatch } from '../../store/demo';
 import { requestProducts } from '../../api';
 
 Page(connect((state) => ({ products: state.products }))({
@@ -7,9 +7,10 @@ Page(connect((state) => ({ products: state.products }))({
    * 生命周期函数--监听页面加载
    */
   async onLoad() {
-    console.log('products', this.data);
-    const products = await requestProducts();
-    dispatch((state) => ({ ...state, products }));
+    const { products } = this.data;
+    if (products && products.length > 0) return;
+    const productsFromRequest = await requestProducts();
+    dispatch((state) => ({ ...state, products: productsFromRequest }));
   },
 
   onBuy(e) {

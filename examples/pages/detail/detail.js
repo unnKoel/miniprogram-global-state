@@ -1,5 +1,5 @@
 // pages/detail/detail.js
-import { connect, dispatch } from '../../store/index';
+import { connect, dispatch } from '../../store/demo';
 
 Page(connect((state) => ({ products: state.products }))({
   /**
