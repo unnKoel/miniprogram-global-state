@@ -12,6 +12,7 @@
   },
 
   "globals": {
+    "localStorage": true,
     "DEV": true,
     "WECHAT": true,
     "ALIPAY": true,

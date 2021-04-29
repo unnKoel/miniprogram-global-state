@@ -33,12 +33,10 @@ const getPersistentValues = (state = {}, paths = []) => {
 const persistValues = debounce((values = {}) => {
   if (!Object.keys(values).length) return;
 
-  // eslint-disable-next-line no-undef
   localStorage.setItem(PERSISTENCE_KEY, JSON.stringify(values));
 }, PERSISTENCE__MILLISECONDS);
 
 const initializeState = (initialState) => {
-  // eslint-disable-next-line no-undef
   const persistantValues = JSON.parse(localStorage.getItem(PERSISTENCE_KEY));
   Object.keys(persistantValues || {}).forEach((key) => {
     set(initialState, key, persistantValues[key] || getValueByPath(key, initialState));
