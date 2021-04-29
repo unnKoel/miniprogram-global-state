@@ -15,7 +15,8 @@ const initialState = {
 };
 
 // create store instance,
-// get `connect` that connect with miniprogram page or component which subsribe global state from store.
+// get `connect` that connect with miniprogram page or 
+// component which subsribe global state from store.
 // and `dispatch` that is used to change the global state.
 const {connect, dispatch} = createStore(initialState);
 
@@ -38,7 +39,8 @@ Page(
 
     onBuy(e) {
       const {index} = e.currentTarget.dataset;
-      // utilize `dispatch` to modify the value of products in immutable way.
+      // utilize `dispatch` to modify the value
+      // of products in immutable way.
       dispatch((state) => {
         const {products, shoppingCart} = state;
         const product = products[index];
@@ -53,4 +55,30 @@ Page(
     },
   })
 );
+```
+
+#### persist store
+persist state of store to localstorage when state was changed. and initialize state
+when seting out.
+
+``` js
+import createStore, { persist } from './index';
+
+const initialState = {
+  products: [],
+
+  shoppingCart: [],
+};
+
+// attach persistant ability to createStore function.
+const createPersistStore = persist(createStore);
+// instantiate persistant store with keys which are necessary
+// to be persisted and initial state
+const { connect, dispatch } = createPersistStore(['shoppingCart', 'products'])(initialState);
+
+export {
+  connect,
+  dispatch,
+};
+
 ```
