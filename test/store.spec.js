@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import createStore from '../src/index';
+import createStore from '../src/store';
 
 describe('createStore', () => {
   const { connect, dispatch } = createStore({

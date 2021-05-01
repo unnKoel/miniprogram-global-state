@@ -3,4 +3,4 @@
 * ✅do unit test to make it more strong.
 * how to invoke `setData` in batches after the invoking of each funtion.
 * how to organize state and relevant update functions more cohesive.
-* how to presist the state to localstorage or webstorage.
+* ✅how to presist the state to localstorage or webstorage.
