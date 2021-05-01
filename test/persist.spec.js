@@ -61,5 +61,15 @@ describe('persist', () => {
       expect(persistantState).toEqual({ 'a.c.d': 5 });
       expect(state).toEqual({ a: { b: 1, c: { d: 5, t: 3 } } });
     });
+
+    it('deep values state should be initialized when initially launch', () => {
+      // eslint-disable-next-line no-shadow
+      const { getState } = createPersistStore(['a.c.d'])({
+        a: { b: 1, c: { d: -1, t: 3 } },
+      });
+
+      const state = getState();
+      expect(state).toEqual({ a: { b: 1, c: { d: 5, t: 3 } } });
+    });
   });
 });
