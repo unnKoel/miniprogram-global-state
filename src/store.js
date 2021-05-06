@@ -1,5 +1,5 @@
-const createStore = (initialState = {}) => {
-  let state = initialState;
+const createStore = (reducer) => {
+  let state = reducer();
   const subscriber = [];
 
   const connect = (mapState) => (Component) => {
@@ -102,8 +102,14 @@ const createStore = (initialState = {}) => {
     return Component;
   };
 
-  const dispatch = (modifyFunc) => {
-    const newState = modifyFunc(state);
+  // const dispatch = (modifyFunc) => {
+  //   const newState = modifyFunc(state);
+  //   subscriber.forEach((fn) => fn(newState));
+  //   state = newState;
+  // };
+
+  const dispatch = (action) => {
+    const newState = reducer(action);
     subscriber.forEach((fn) => fn(newState));
     state = newState;
   };
