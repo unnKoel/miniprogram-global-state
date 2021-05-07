@@ -109,7 +109,7 @@ const createStore = (reducer) => {
   // };
 
   const dispatch = (action) => {
-    const newState = reducer(action);
+    const newState = reducer(state, action);
     subscriber.forEach((fn) => fn(newState));
     state = newState;
   };
