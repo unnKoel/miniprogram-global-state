@@ -5,8 +5,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-const createStore = (initialState = {}) => {
-  let state = initialState;
+var _initialAction = _interopRequireDefault(require("./initialAction"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const createStore = (reducer, initialState) => {
+  let state = initialState || reducer(undefined, _initialAction.default);
   const subscriber = [];
 
   const connect = mapState => Component => {
@@ -104,10 +108,15 @@ const createStore = (initialState = {}) => {
 
     };
     return Component;
-  };
+  }; // const dispatch = (modifyFunc) => {
+  //   const newState = modifyFunc(state);
+  //   subscriber.forEach((fn) => fn(newState));
+  //   state = newState;
+  // };
 
-  const dispatch = modifyFunc => {
-    const newState = modifyFunc(state);
+
+  const dispatch = action => {
+    const newState = reducer(state, action);
     subscriber.forEach(fn => fn(newState));
     state = newState;
   };

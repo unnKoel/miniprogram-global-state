@@ -5,7 +5,7 @@ const combineReducer = (reducers = {}) => {
 
   const finalReducerkeys = Object.keys(finalReducers);
 
-  return (state, action) => {
+  return (state = {}, action) => {
     const nextState = {};
     let changed = false;
     // eslint-disable-next-line no-plusplus

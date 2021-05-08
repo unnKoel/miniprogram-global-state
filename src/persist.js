@@ -1,4 +1,5 @@
 import debounce from './utils/debounce';
+import initialAction from './initialAction';
 import set from './utils/set';
 
 const PERSISTENCE_KEY = '_global_state';
@@ -45,8 +46,9 @@ const initializeState = (initialState) => {
   return initialState;
 };
 
-const persist = (createStore) => (paths = []) => (initialState = {}) => {
-  const { subscribe, ...remaining } = createStore(initializeState(initialState));
+const persist = (createStore) => (paths = []) => (reducer) => {
+  const initialState = reducer(undefined, initialAction);
+  const { subscribe, ...remaining } = createStore(reducer, initializeState(initialState));
 
   subscribe((state) => {
     persistValues(getPersistentValues(state, paths));

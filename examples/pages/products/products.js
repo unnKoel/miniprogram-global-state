@@ -10,18 +10,12 @@ Page(connect((state) => ({ products: state.products }))({
     const { products } = this.data;
     if (products && products.length > 0) return;
     const productsFromRequest = await requestProducts();
-    dispatch((state) => ({ ...state, products: productsFromRequest }));
+    dispatch({ type: 'initializeProducts', payload: productsFromRequest });
   },
 
   onBuy(e) {
     const { index } = e.currentTarget.dataset;
-    dispatch((state) => {
-      const { products, shoppingCart } = state;
-      const product = products[index];
-      product.num -= 1;
-      const newShoppingCart = [...shoppingCart, product];
-      return { ...state, products: [...products], shoppingCart: newShoppingCart };
-    });
+    dispatch({ type: 'buyProduct', payload: index });
   },
 
   onTapProduct(e) {

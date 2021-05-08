@@ -32,13 +32,7 @@ Page(connect((state) => ({ products: state.products }))({
   onBuy() {
     const { index } = this.data;
 
-    dispatch((state) => {
-      const { products, shoppingCart } = state;
-      const product = products[index];
-      product.num -= 1;
-      const newShoppingCart = [...shoppingCart, product];
-      return { ...state, products: [...products], shoppingCart: newShoppingCart };
-    });
+    dispatch({ type: 'buyProduct', payload: index });
   },
 
   navToCart() {

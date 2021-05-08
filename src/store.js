@@ -1,5 +1,7 @@
-const createStore = (reducer) => {
-  let state = reducer();
+import initialAction from './initialAction';
+
+const createStore = (reducer, initialState) => {
+  let state = initialState || reducer(undefined, initialAction);
   const subscriber = [];
 
   const connect = (mapState) => (Component) => {
