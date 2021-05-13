@@ -2,11 +2,30 @@
 import createStore from '../src/store';
 
 describe('createStore', () => {
-  const { connect, dispatch } = createStore({
+  const initialState = {
     count: 1,
     account: { name: 'zzr' },
     works: [{ type: 'component' }],
-  });
+  };
+
+  const reducer = (state = initialState, action) => {
+    if (action.type === 'increaseCount') {
+      const { count } = state;
+      return { ...state, count: count + 1 };
+    }
+
+    if (action.type === 'modifyWorkType') {
+      const { payload: type } = action;
+      const { works } = state;
+      const work0 = works[0];
+
+      return { ...state, works: [{ ...work0, type }] };
+    }
+
+    return state;
+  };
+
+  const { connect, dispatch } = createStore(reducer);
 
   describe('connect with component', () => {
     class Component {
@@ -43,7 +62,7 @@ describe('createStore', () => {
       const componentA = new Component(connect((state) => ({ count: state.count }))({}));
       const componentB = new Component(connect((state) => ({ count: state.count }))({}));
 
-      dispatch((state) => ({ ...state, count: 2 }));
+      dispatch({ type: 'increaseCount' });
       expect(componentA.data.count).toBe(2);
       expect(componentB.data.count).toBe(2);
     });
@@ -58,12 +77,7 @@ describe('createStore', () => {
         },
       }));
 
-      dispatch((state) => {
-        const { works } = state;
-        const work0 = works[0];
-
-        return { ...state, works: [{ ...work0, type: 'component0' }] };
-      });
+      dispatch({ type: 'modifyWorkType', payload: 'component0' });
 
       expect(componentA.data.work.type).toBe('component0');
     });
@@ -104,7 +118,7 @@ describe('createStore', () => {
       const pageA = new Page(connect((state) => ({ count: state.count }))({}));
       const pageB = new Page(connect((state) => ({ count: state.count }))({}));
 
-      dispatch((state) => ({ ...state, count: 3 }));
+      dispatch({ type: 'increaseCount' });
       expect(pageA.data.count).toBe(3);
       expect(pageB.data.count).toBe(3);
     });
@@ -119,12 +133,7 @@ describe('createStore', () => {
         },
       }));
 
-      dispatch((state) => {
-        const { works } = state;
-        const work0 = works[0];
-
-        return { ...state, works: [{ ...work0, type: 'page0' }] };
-      });
+      dispatch({ type: 'modifyWorkType', payload: 'page0' });
 
       expect(pageA.data.work.type).toBe('page0');
     });
