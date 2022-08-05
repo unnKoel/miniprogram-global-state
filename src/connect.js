@@ -6,8 +6,7 @@ const createConnect = (store) => (mapState) => (Component) => {
   // eslint-disable-next-line no-shadow
   const getSliceState = (state) => (!mapState ? state : mapState(state));
 
-  const state = store.getState();
-  const sliceState = getSliceState(state);
+  const sliceState = getSliceState(store.getState());
   const { data = {}, derived } = Component;
 
   const invokeDerived = (instance) => {
@@ -38,7 +37,7 @@ const createConnect = (store) => (mapState) => (Component) => {
 
   const subscribe = (instance) => {
     store.subscribe((newState) => {
-      const oldSliceState = getSliceState(state);
+      const oldSliceState = getSliceState(store.getState());
       const newSliceState = getSliceState(newState);
 
       const changedKeys = Object.keys(newSliceState).filter(
@@ -68,7 +67,7 @@ const createConnect = (store) => (mapState) => (Component) => {
     subscribe(this);
 
     // eslint-disable-next-line no-shadow
-    const sliceState = getSliceState(state);
+    const sliceState = getSliceState(store.getState());
     this.setData(sliceState);
 
     if (typeof onLoad === 'function') {
@@ -85,7 +84,7 @@ const createConnect = (store) => (mapState) => (Component) => {
       subscribe(this);
 
       // eslint-disable-next-line no-shadow
-      const sliceState = getSliceState(state);
+      const sliceState = getSliceState(store.getState());
       this.setData(sliceState);
 
       if (typeof finalAttached === 'function') {
