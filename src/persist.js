@@ -48,13 +48,13 @@ const initializeState = (initialState) => {
 
 const persist = (createStore) => (paths = []) => (reducer) => {
   const initialState = reducer(undefined, initialAction);
-  const { subscribe, ...remaining } = createStore(reducer, initializeState(initialState));
+  const store = createStore(reducer, initializeState(initialState));
 
-  subscribe((state) => {
+  store.subscribe((state) => {
     persistValues(getPersistentValues(state, paths));
   });
 
-  return remaining;
+  return store;
 };
 
 export default persist;
