@@ -1,7 +1,5 @@
-import initialAction from './initialAction';
-
-const createStore = (reducer, initialState) => {
-  let state = initialState || reducer(undefined, initialAction);
+const createStore = (reducer) => {
+  let state = reducer();
   const subscriber = [];
 
   const dispatch = (action) => {
