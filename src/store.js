@@ -104,12 +104,6 @@ const createStore = (reducer, initialState) => {
     return Component;
   };
 
-  // const dispatch = (modifyFunc) => {
-  //   const newState = modifyFunc(state);
-  //   subscriber.forEach((fn) => fn(newState));
-  //   state = newState;
-  // };
-
   const dispatch = (action) => {
     const newState = reducer(state, action);
     subscriber.forEach((fn) => fn(newState));

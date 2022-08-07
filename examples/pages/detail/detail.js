@@ -13,9 +13,6 @@ Page(connect((state) => ({ products: state.products }))({
   derived() {
     const { index, products } = this.data;
     return { product: products[index] };
-    // this.setData({
-    //   product: products[index],
-    // });
   },
 
   /**

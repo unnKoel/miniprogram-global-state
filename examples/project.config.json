@@ -1,7 +1,8 @@
 {
   "description": "项目配置文件",
   "packOptions": {
-    "ignore": []
+    "ignore": [],
+    "include": []
   },
   "setting": {
     "urlCheck": true,
@@ -38,53 +39,24 @@
   "libVersion": "2.14.0",
   "appid": "wx61b03e27b5439a5d",
   "projectname": "examples",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "scripts": {},
-  "isGameTourist": false,
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
-    "plugin": {
-      "current": -1,
-      "list": []
-    },
-    "game": {
-      "current": -1,
-      "list": []
-    },
-    "gamePlugin": {
-      "current": -1,
-      "list": []
-    },
     "miniprogram": {
-      "current": -1,
       "list": [
         {
-          "id": 0,
           "name": "pages/shopping-cart/shopping-cart",
           "pathName": "pages/shopping-cart/shopping-cart",
           "query": "",
           "scene": null
         },
         {
-          "id": -1,
           "name": "pages/products/products",
           "pathName": "pages/products/products",
           "query": "",
           "scene": null
         },
         {
-          "id": -1,
           "name": "pages/detail/detail",
           "pathName": "pages/detail/detail",
           "query": "",
@@ -92,5 +64,9 @@
         }
       ]
     }
+  },
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
   }
 }
