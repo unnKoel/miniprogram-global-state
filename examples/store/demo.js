@@ -1,4 +1,4 @@
-import createStore, { persist } from './index';
+import createStore, { persist, createConnect } from './index';
 
 const initialState = {
   products: [],
@@ -26,7 +26,9 @@ const reducer = (state = initialState, action) => {
 };
 
 const createPersistStore = persist(createStore);
-const { connect, dispatch } = createPersistStore(['shoppingCart', 'products'])(reducer);
+const store = createPersistStore(['shoppingCart', 'products'])(reducer);
+const connect = createConnect(store);
+const { dispatch } = store;
 
 export {
   connect,
