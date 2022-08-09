@@ -1,4 +1,4 @@
-import createStore, { persist, createConnect } from './index';
+import createStore, { persist, createConnect } from './lib/index';
 
 const initialState = {
   products: [],
@@ -6,7 +6,7 @@ const initialState = {
   shoppingCart: [],
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action = {}) => {
   const { type } = action;
   if (type === 'initializeProducts') {
     const { payload: productsFromRequest } = action;

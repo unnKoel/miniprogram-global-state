@@ -3,7 +3,7 @@
   <view class="header">
     <view bindtap="navToCart">my shopping cart >></view>
   </view>
-  <view class="welcome">Welcome to micro store !!!</view>
+  <view class="welcome">Welcome to micro store</view>
   <view class="start">Please pick products you prefer.</view>
   <view class="list" wx:for="{{products}}">
     <view class="item" bindtap="onTapProduct" data-index="{{index}}">

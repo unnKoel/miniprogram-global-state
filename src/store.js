@@ -1,17 +1,17 @@
 const createStore = (reducer) => {
   let state = reducer();
-  const subscriber = [];
+  const observers = [];
 
   const dispatch = (action) => {
     const newState = reducer(state, action);
-    subscriber.forEach((fn) => fn(newState));
+    observers.forEach((observer) => observer(newState));
     state = newState;
   };
 
   const getState = () => state;
 
-  const subscribe = (fn) => {
-    subscriber.push(fn);
+  const subscribe = (observer) => {
+    observers.push(observer);
   };
 
   return {

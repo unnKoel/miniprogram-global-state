@@ -7,8 +7,6 @@ exports.default = void 0;
 
 var _debounce = _interopRequireDefault(require("./utils/debounce"));
 
-var _initialAction = _interopRequireDefault(require("./initialAction"));
-
 var _set = _interopRequireDefault(require("./utils/set"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -52,8 +50,8 @@ const initializeState = initialState => {
 };
 
 const persist = createStore => (paths = []) => reducer => {
-  const initialState = reducer(undefined, _initialAction.default);
-  const store = createStore(reducer, initializeState(initialState));
+  const initialState = initializeState(reducer());
+  const store = createStore((state = initialState, action) => reducer(state, action));
   store.subscribe(state => {
     persistValues(getPersistentValues(state, paths));
   });
